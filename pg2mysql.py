@@ -59,7 +59,7 @@ def transform_pg_to_mysql(contents: list[str]) -> list[str]:
 
             values_chunk = "\n".join(values_chunk).strip(",")
 
-            query = f"SET FOREIGN_KEY_CHECKS=0;\n\nINSERT INTO `{table_name}` {fields} VALUES \n{values_chunk} \n\nON DUPLICATE KEY UPDATE {first_field}={first_field};\n"
+            query = f"SET FOREIGN_KEY_CHECKS=0;\n\nINSERT INTO `{table_name}` {fields} VALUES \n{values_chunk} \n\nON DUPLICATE KEY UPDATE `{first_field}`=`{first_field}`;\n"
 
             if not values_chunk:
                 print(f"- Skipping {table_name} as it has no data.")
